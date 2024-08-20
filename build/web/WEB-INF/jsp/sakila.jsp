@@ -69,7 +69,7 @@
                         <a href="./editar?filme=${filme.film_id}"><button type="button" class="btn btn-info">Editar</button></a>
                            
                         
-                        <button type="button" class="btn btn-danger">Excluir</button>
+                        <a href="./excluir?filme=${filme.film_id}"><button type="button" class="btn btn-danger">Excluir</button> </a>
                     </td>
                    </tr>
                </c:forEach>

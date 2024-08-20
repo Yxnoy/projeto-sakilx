@@ -27,7 +27,7 @@ public class FilmesDao {
          PreparedStatement stmt = null;
          ResultSet rs = null;
          
-         stmt = conexao.prepareStatement("select * from film ");
+         stmt = conexao.prepareStatement("select * from film WHERE film_id < 51");
          rs = stmt.executeQuery();
          
          while(rs.next()){
@@ -97,7 +97,29 @@ public class FilmesDao {
        }
        return filmeSelecionado;
      }
+     
+      public void deletarFilme (int filme){
+        
+        try{
+            Connection conexao = Conexao.conectar(); 
+            PreparedStatement stmt = null;
+            
+            stmt = conexao.prepareStatement("DELETE FROM film WHERE film_id = ?");
+            
+            stmt.setInt(1, filme);
+            
+            stmt.executeUpdate();
+            stmt.close();
+            conexao.close();
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+      }
 }
+
+
+
 
 
 
