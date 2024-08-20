@@ -18,7 +18,7 @@ import model.bean.Filmes;
 import model.dao.FilmesDao;
 
 
-@WebServlet(name = "SakilaController", urlPatterns = {"/SakilaController", "/sakila", "/cadastrar-filme", "/editar"})
+@WebServlet(name = "SakilaController", urlPatterns = {"/SakilaController", "/sakila", "/cadastrar-filme", "/editar", "/excluir"})
 public class SakilaController extends HttpServlet {
 
    
@@ -47,7 +47,7 @@ public class SakilaController extends HttpServlet {
            
             request.getRequestDispatcher("/WEB-INF/jsp/sakila.jsp").forward(request, response);
         } else if(paginaAtual.equals("/cadastrar-filme")) {
-            request.getRequestDispatcher("/WEB-INF/jsp/cadastrar-filme.jsp").forward(request, response);  
+            request.getRequestDispatcher("/WEB-INF/jsp/Cadastrar-filme.jsp").forward(request, response);  
         } else if(paginaAtual.equals("/editar")){
             int id = Integer.parseInt(request.getParameter("filme"));
             
@@ -58,7 +58,14 @@ public class SakilaController extends HttpServlet {
             
             
             request.getRequestDispatcher("/WEB-INF/jsp/editar.jsp").forward(request, response); 
+        }else if(paginaAtual.equals("/excluir")){
+            int id = Integer.parseInt(request.getParameter("filme"));
+            
+           filme.deletarFilme(id);
+            
+            response.sendRedirect("./sakila");
         }
+            
     }
 
    
